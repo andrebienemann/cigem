@@ -1,0 +1,65 @@
+#define PY_SSIZE_T_CLEAN
+#include <Python.h>
+
+#include "{{ module.path }}/__init__.h"
+
+{% for function in module.functions %}
+static PyObject *{{ function.name }}_wrapper (PyObject *self, PyObject *args) {
+    {% for parameter in function.parameters %}
+    const {{ parameter.ctype }} {{ parameter.name }};
+    {% endfor %}
+
+    {% if function.parameters %}
+    if (!PyArg_ParseTuple(
+        args,
+        "{% for parameter in function.parameters %}{{ parameter.fstring }}{% endfor %}",
+        {% for parameter in function.parameters %}
+        &{{ parameter.name }}{{ ", " if not loop.last else "" }}
+        {% endfor %}
+    )) {
+        return NULL;
+    }
+    {% endif %}
+
+    {{ function.return_type.ctype }} __frv__ = {{ function.name }}(
+        {% for parameter in function.parameters %}
+        {{ parameter.name }}{{ ", " if not loop.last else "" }}
+        {% endfor %}
+    );
+
+    PyObject *__wrv__ = Py_BuildValue(
+        "{{ function.return_type.fstring }}",
+        __frv__
+    );
+
+    return __wrv__;
+}
+{% endfor %}
+
+static PyMethodDef methods[] = {
+    {% for function in module.functions %}
+    {
+        "{{ function.name }}",
+        (PyCFunction){{ function.name }}_wrapper,
+        METH_VARARGS,
+    },
+    {% endfor %}
+    {
+        NULL,
+        NULL,
+        0,
+        NULL,
+    },
+};
+
+static struct PyModuleDef module_def = {
+    PyModuleDef_HEAD_INIT,
+    "{{ module.name }}",
+    "",
+    -1,
+    methods,
+};
+
+PyMODINIT_FUNC PyInit_{{ module.name }}(void) { 
+    return PyModule_Create(&module_def); 
+}
