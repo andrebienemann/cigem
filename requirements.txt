@@ -1,0 +1,8 @@
+black
+isort
+coverage
+
+mkdocs-material
+
+click
+jinja2
