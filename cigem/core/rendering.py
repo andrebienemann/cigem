@@ -9,4 +9,11 @@ extension_module_template = environment.get_template("extension_module.j2")
 
 
 def render_extension_module(module):
+    """
+    Renders wrapper code for an extension module
+
+    Parameters
+    module: the module to be rendered
+    """
+
     return extension_module_template.render({"module": module})
