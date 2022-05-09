@@ -19,14 +19,14 @@ def render_extension_module(module):
     return extension_module_template.render({"module": module})
 
 
-def render_setup_script(package_name):
+def render_setup_script(package):
     """
     Renders a setup script
 
     Parameters
-    package_name: the name of the package
+    package: the package to be created
     """
 
-    setup_script_template = environment.get_template("setup_script.j2")
+    new_setup_script_template = environment.get_template("new_setup_script.j2")
 
-    return setup_script_template.render({"package_name": package_name})
+    return new_setup_script_template.render({"package": package})

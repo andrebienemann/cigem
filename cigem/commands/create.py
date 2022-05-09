@@ -32,5 +32,5 @@ def create(name, path):
     call_touch(init)
 
     setup = project.joinpath("setup.py")
-    content = render_setup_script(name)
+    content = render_setup_script(module)
     setup.write_text(content)
