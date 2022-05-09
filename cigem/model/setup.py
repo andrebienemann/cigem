@@ -10,7 +10,7 @@ class Setup:
     re_package_name = re.compile(r"name=\"([a-z]*)\"")
     re_setup_function = re.compile(r"setup\(((?:.*|\n)*)\)")
 
-    def __init__(self, package_name: str, setup_script: str, setup_function):
+    def __init__(self, package_name: str, setup_script: str, setup_function: str):
         """
         Parameters
         package_name: the name of the package

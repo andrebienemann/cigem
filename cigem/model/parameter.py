@@ -16,7 +16,7 @@ class Parameter:
         self.fstring = fstring
 
     @classmethod
-    def make_parameter(cls, string):
+    def make_parameter(cls, string: str):
         """
         Mekes a parameter
 
