@@ -1,0 +1,15 @@
+site_name: CIGEM
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: black
+    accent: cyan
+  logo: assets/logo-white.svg
+  favicon: assets/logo-black.svg
+repo_name: 'andrebienemann/cigem'
+repo_url: 'https://github.com/andrebienemann/cigem'
+extra_css: ['extra.css']
+edit_uri: ""
+nav:
+- Home: "index.md"
