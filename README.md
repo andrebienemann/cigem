@@ -5,11 +5,11 @@
 [![License](https://img.shields.io/github/license/andrebienemann/cigem)](https://github.com/andrebienemann/cigem/blob/main/LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Assits at creating and building extension modules inside of Python packages by generating wrapper code.
+Assists in creating and building extension modules inside Python packages by generating wrapper code.
 
-Follows Convention over Code design approach where developers are requred to use stub files for defing extension modules. 
+Follows Convention over Code design approach where developers are required to use stub files for defining extension modules.
 
-This approach prevents developers from wrting wrapper code for interfacing their extensions written in a low-level language.
+This approach prevents developers from writing wrapper code for interfacing their extensions written in a low-level language.
 
 ## Installation
 
