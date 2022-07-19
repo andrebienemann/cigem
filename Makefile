@@ -12,7 +12,7 @@ help all:
 
 .PHONY: setup
 setup: ## Setup the project
-	@virtualenv -p python3 $(ROOT)/venv; \
+	@python3 -m venv $(ROOT)/venv; \
 	source $(ROOT)/venv/bin/activate; \
 	pip install -r $(ROOT)/requirements.txt; \
 
@@ -28,9 +28,9 @@ install: ## Install the module
 
 .PHONY: unit-tests
 unit-tests: ## Execute unit tests
-	@source $(ROOT)/venv/bin/activate && python3 -B \
+	@source $(ROOT)/venv/bin/activate && python -B \
 	-m coverage run --source $(ROOT)/cigem \
-	-m unittest discover $(ROOT)/tests/test_model; \
+	-m unittest discover $(ROOT)/tests; \
 
 .PHONY: coverage
 coverage: ## Display coverage
@@ -40,7 +40,7 @@ coverage: ## Display coverage
 .PHONY: publish-lib
 publish-lib: ## Publish on PyPI
 	@source $(ROOT)/venv/bin/activate; \
-	python3 $(ROOT)/setup.py sdist bdist_wheel; \
+	python $(ROOT)/setup.py sdist bdist_wheel; \
 	twine upload $(ROOT)/dist/*; \
 
 .PHONY: serve-docs
